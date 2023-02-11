@@ -1,38 +1,21 @@
 INT_MAX = 2147483647
 
-"""
-A Dynamic Programming based function that
-calculates minimum cost of a Binary Search Tree.
-"""
 
-def optimal_search_tree(keys: list, freq: list, n: int):
-    """
-    Create an auxiliary 2D matrix to store
-    results of subproblems
-    """
+def optimal_search_tree(keys: list, freq: list, n: int) -> int:
+    cost = [[0 for x in range(n + 1)] for y in range(n + 1)]
 
-    cost = [[0 for x in range(n)] for y in range(n)]
-
-    """
-    cost[i][j] = Optimal cost of binary search
-	tree that can be formed from keys[i] to keys[j].
-	cost[0][n-1] will store the resultant cost
-    """
-
-    # For a single key, cost is equal to
-    # frequency of the key
     for i in range(n):
         cost[i][i] = freq[i]
 
-    # Now we need to consider chains of
-    # length 2, 3, ... . L is chain length.
+    print("===>>>>", cost)
+
+    # Now we need to consider chains of length 2, 3, ... L is chain length.
     for L in range(2, n + 1):
 
         # i is row number in cost
         for i in range(n - L + 1):
 
-            # Get column number j from row number
-            # i and chain length L
+            # Get column number j from row number i and chain length L
             j = i + L - 1
             off_set_sum = sum(freq, i, j)
 
@@ -40,12 +23,10 @@ def optimal_search_tree(keys: list, freq: list, n: int):
                 break
             cost[i][j] = INT_MAX
 
-            # Try making all keys in interval
-            # keys[i..j] as root
+            # Try making all keys in interval keys[i..j] as root
             for r in range(i, j + 1):
 
-                # c = cost when keys[r] becomes root
-                # of this subtree
+                # c = cost when keys[r] becomes root of this subtree
                 c = 0
                 if r > i:
                     c += cost[i][r - 1]
@@ -54,13 +35,12 @@ def optimal_search_tree(keys: list, freq: list, n: int):
                 c += off_set_sum
                 if c < cost[i][j]:
                     cost[i][j] = c
+
     return cost[0][n - 1]
 
 
-# A utility function to get sum of
-# array elements freq[i] to freq[j]
+# A utility function to get sum of array elements freq[i] to freq[j]
 def sum(freq, i, j):
-
     s = 0
     for k in range(i, j + 1):
         s += freq[k]
@@ -72,5 +52,5 @@ if __name__ == "__main__":
     keys = [10, 12, 20]
     freq = [34, 8, 50]
     n = len(keys)
-
+    print(n)
     print("Cost of Optimal BST is", optimal_search_tree(keys, freq, n))
