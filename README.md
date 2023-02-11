@@ -20,10 +20,10 @@ Here's the algorithm to calculate the cost of the OBST:
 - The cost of the OBST is stored in cost[1][n].
 
 ```bash
-0  [0, 34, 42, 92]
+0  [0, 34, 42,  92]
 10 [0,  0, 50, 100]
-12 [0,  0,  0, 58]
-20 [0,  0,  0, 0]
+12 [0,  0,  0,  58]
+20 [0,  0,  0,   0]
 
 And the cost of the OBST is cost[1][3] = 58.
 ```
