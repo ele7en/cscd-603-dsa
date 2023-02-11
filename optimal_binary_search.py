@@ -1,13 +1,9 @@
-# Dynamic Programming code for Optimal Binary Search
-# Tree Problem
-
 INT_MAX = 2147483647
 
 """
 A Dynamic Programming based function that
 calculates minimum cost of a Binary Search Tree.
 """
-
 
 def optimal_search_tree(keys: list, freq: list, n: int):
     """
@@ -33,12 +29,13 @@ def optimal_search_tree(keys: list, freq: list, n: int):
     for L in range(2, n + 1):
 
         # i is row number in cost
-        for i in range(n - L + 2):
+        for i in range(n - L + 1):
 
             # Get column number j from row number
             # i and chain length L
             j = i + L - 1
             off_set_sum = sum(freq, i, j)
+
             if i >= n or j >= n:
                 break
             cost[i][j] = INT_MAX
@@ -75,4 +72,5 @@ if __name__ == "__main__":
     keys = [10, 12, 20]
     freq = [34, 8, 50]
     n = len(keys)
+
     print("Cost of Optimal BST is", optimal_search_tree(keys, freq, n))
