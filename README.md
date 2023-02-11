@@ -11,10 +11,10 @@ Here's the algorithm to calculate the cost of the OBST:
 - Initialize a 2D table "cost" of size nxn, where n is the number of keys.
 - Fill the diagonal of the table with the frequencies.
 - For each subproblem of size len (length) from 2 to n, do the following:
-  - a. For each node i from 1 to n-len+1, do the following:
-      - i. Calculate node j as i+len-1.
-      - ii. Calculate the cost of the subtree rooted at node i, with keys ranging from i to j.
-      - iii. Find the minimum cost of all subtrees rooted at nodes k (i <= k <= j) by using the formula:
+  - For each node i from 1 to n-len+1, do the following:
+      - Calculate node j as i+len-1.
+      - Calculate the cost of the subtree rooted at node i, with keys ranging from i to j.
+      - Find the minimum cost of all subtrees rooted at nodes k (i <= k <= j) by using the formula:
 
     cost[i][j] = min(cost[i][j], cost[i][k-1] + cost[k+1][j] + sum[j] - sum[i-1]), where sum is an array storing the prefix sum of frequencies.
 - The cost of the OBST is stored in cost[1][n].
