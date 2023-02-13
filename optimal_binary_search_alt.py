@@ -2,7 +2,7 @@ INT_MAX = 2147483647
 
 
 def optimal_search_tree(keys: list, freq: list, n: int) -> int:
-    cost = [[0 for x in range(n + 1)] for y in range(n + 1)]
+    cost = [[0 for x in range(n)] for y in range(n)]
 
     for i in range(n):
         cost[i][i] = freq[i]

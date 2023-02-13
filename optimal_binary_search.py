@@ -8,6 +8,10 @@ def optimal_bst(keys, freq):
     for i in range(1, n + 1):
         sum[i] = sum[i - 1] + freq[i - 1]
 
+    print(n)
+    print([i for i in range(n)])
+    print([i for i in range(2, n + 1)])
+
     for length in range(2, n + 1):
 
         for i in range(1, n - length + 2):
@@ -20,10 +24,10 @@ def optimal_bst(keys, freq):
                 if c < cost[i][j]:
                     cost[i][j] = c
 
-    # return cost[1][n]
-    return cost
+    return cost[1][n - 1]
 
 
 keys = [10, 20, 30, 40]
 freq = [4, 2, 6, 3]
+
 print("Cost of the optimal binary search tree is:", optimal_bst(keys, freq))
